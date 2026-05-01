@@ -1,0 +1,435 @@
+/* ============================================
+   GESTOR FINANCEIRO - CSS Completo
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap');
+
+:root {
+    --verde:    #00c896;
+    --verde-bg: #e6faf5;
+    --vermelho:    #ff4d6d;
+    --vermelho-bg: #fff0f3;
+    --azul:     #3b82f6;
+    --azul-bg:  #eff6ff;
+    --cinza-bg: #f1f5f9;
+    --branco:   #ffffff;
+    --texto:    #1e293b;
+    --subtexto: #64748b;
+    --borda:    #e2e8f0;
+    --sombra:   0 2px 12px rgba(0,0,0,0.07);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cinza-bg);
+    color: var(--texto);
+    min-height: 100vh;
+}
+
+/* ============================================
+   MENU / NAVBAR
+   ============================================ */
+.menu {
+    background: var(--texto);
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.menu-brand {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #fff;
+    letter-spacing: -0.5px;
+}
+
+.menu-links a {
+    color: #cbd5e1;
+    text-decoration: none;
+    margin-left: 24px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.menu-links a:hover {
+    color: var(--verde);
+}
+
+/* ============================================
+   CONTAINER
+   ============================================ */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 20px 60px;
+}
+
+.container h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 24px;
+    color: var(--texto);
+}
+
+/* ============================================
+   CARDS DE RESUMO
+   ============================================ */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.card {
+    background: var(--branco);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border: 1px solid var(--borda);
+    box-shadow: var(--sombra);
+}
+
+.card-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--subtexto);
+}
+
+.card-valor {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--texto);
+}
+
+.card-receita .card-valor { color: var(--verde); }
+.card-despesa .card-valor { color: var(--vermelho); }
+.card-saldo.positivo .card-valor { color: var(--verde); }
+.card-saldo.negativo .card-valor { color: var(--vermelho); }
+
+/* ============================================
+   BOX (PAINÉIS)
+   ============================================ */
+.box {
+    background: var(--branco);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 20px;
+    border: 1px solid var(--borda);
+    box-shadow: var(--sombra);
+}
+
+.box h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+    color: var(--texto);
+}
+
+.box-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.box-header h2 {
+    margin-bottom: 0;
+}
+
+.vazio {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--subtexto);
+}
+
+.vazio p { margin-bottom: 16px; }
+
+/* ============================================
+   FORMULÁRIO
+   ============================================ */
+.form-group {
+    margin-bottom: 14px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--subtexto);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--texto);
+    background: var(--branco);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+}
+
+input:focus, select:focus {
+    border-color: var(--azul);
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
+}
+
+/* ============================================
+   BOTÕES
+   ============================================ */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: var(--verde);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.btn:hover { background: #00a87e; transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+
+.btn-full { width: 100%; text-align: center; }
+
+.btn-perigo {
+    background: var(--vermelho);
+    padding: 8px 14px;
+    font-size: 0.85rem;
+}
+.btn-perigo:hover { background: #e0304d; }
+
+/* ============================================
+   TABELA
+   ============================================ */
+.tabela {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.tabela th {
+    background: var(--cinza-bg);
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--subtexto);
+    border-bottom: 1px solid var(--borda);
+}
+
+.tabela td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--borda);
+    color: var(--texto);
+    vertical-align: middle;
+}
+
+.tabela tfoot td {
+    background: var(--cinza-bg);
+    font-weight: 600;
+    border-top: 2px solid var(--borda);
+}
+
+.tabela tr:last-child td { border-bottom: none; }
+.tabela tr:hover td { background: #f8fafc; }
+
+/* ============================================
+   BADGES / TIPO
+   ============================================ */
+.badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge.receita {
+    background: var(--verde-bg);
+    color: #00a87e;
+}
+
+.badge.despesa {
+    background: var(--vermelho-bg);
+    color: var(--vermelho);
+}
+
+/* cores inline para impacto */
+.receita { color: var(--verde); font-weight: 600; }
+.despesa { color: var(--vermelho); font-weight: 600; }
+
+/* ============================================
+   BARRA DE PERCENTUAL
+   ============================================ */
+.barra-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.barra {
+    height: 8px;
+    border-radius: 4px;
+    min-width: 4px;
+    transition: width 0.3s;
+}
+
+.barra.receita { background: var(--verde); }
+.barra.despesa { background: var(--vermelho); }
+
+.barra-container span {
+    font-size: 0.78rem;
+    color: var(--subtexto);
+    white-space: nowrap;
+}
+
+/* ============================================
+   LOGIN
+   ============================================ */
+.login-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
+.login-box {
+    background: var(--branco);
+    border-radius: 18px;
+    padding: 40px 36px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.login-logo {
+    font-size: 3rem;
+    margin-bottom: 12px;
+}
+
+.login-box h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--texto);
+    margin-bottom: 6px;
+}
+
+.login-sub {
+    color: var(--subtexto);
+    font-size: 0.9rem;
+    margin-bottom: 28px;
+}
+
+.login-box .form-group {
+    text-align: left;
+}
+
+.login-hint {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    color: var(--subtexto);
+    background: var(--cinza-bg);
+    border-radius: 8px;
+    padding: 10px;
+}
+
+/* ============================================
+   ALERTAS
+   ============================================ */
+.alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: left;
+}
+
+.alert-erro {
+    background: var(--vermelho-bg);
+    color: var(--vermelho);
+    border: 1px solid #ffb3c1;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--subtexto);
+    font-size: 0.82rem;
+    border-top: 1px solid var(--borda);
+    margin-top: 20px;
+}
+
+/* ============================================
+   RESPONSIVO
+   ============================================ */
+@media (max-width: 640px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .menu {
+        padding: 0 16px;
+    }
+
+    .tabela th:nth-child(6),
+    .tabela td:nth-child(6) {
+        display: none;
+    }
+}
