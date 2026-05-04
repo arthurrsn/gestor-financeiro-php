@@ -2,6 +2,16 @@
 include("session.php");
 include("funcoes.php");
 
+if (isset($_POST["excluir_index"])) {
+    $index = $_POST["excluir_index"];
+    if (isset($_SESSION["transacoes"][$index])) {
+        unset($_SESSION["transacoes"][$index]);
+        $_SESSION["transacoes"] = array_values($_SESSION["transacoes"]);
+    }
+    header("Location: index.php");
+    exit;
+}
+
 if (isset($_POST["limpar"])) {
     $_SESSION["transacoes"] = [];
     header("Location: index.php");
@@ -25,6 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["nome"])) {
     header("Location: index.php");
     exit;
 }
+
+
 
 $transacoes   = $_SESSION["transacoes"];
 $saldo        = calcularSaldo($transacoes);
@@ -67,8 +79,8 @@ $totalDespesa = totalDespesas($transacoes);
                 <div class="form-group">
                     <label>Tipo</label>
                     <select name="tipo">
-                        <option value="receita">Receita</option>
                         <option value="despesa">Despesa</option>
+                        <option value="receita">Receita</option>
                     </select>
                 </div>
             </div>
@@ -92,10 +104,14 @@ $totalDespesa = totalDespesas($transacoes);
                     <th>Tipo</th>
                     <th>Valor</th>
                     <th>Data</th>
+                    <th class="col-acoes">Ações</th> </tr>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach (array_reverse($transacoes) as $t): ?>
+                <?php 
+                $lista_invertida = array_reverse($_SESSION["transacoes"], true); 
+                foreach ($lista_invertida as $index => $t): 
+                ?>
                 <tr>
                     <td><?= htmlspecialchars($t["nome"]) ?></td>
                     <td>
@@ -107,7 +123,16 @@ $totalDespesa = totalDespesas($transacoes);
                         <?= $t["tipo"] === "receita" ? "+" : "-" ?> <?= formatarMoeda($t["valor"]) ?>
                     </td>
                     <td><?= $t["data"] ?? "-" ?></td>
+                    <td class="col-acoes">
+                        <form method="POST" class="form-excluir" onsubmit="return confirm('Excluir esta transação?')">
+                            <input type="hidden" name="excluir_index" value="<?= $index ?>">
+                            <button type="submit" class="btn-deletar" title="Excluir">
+                                &times;
+                            </button>
+                        </form>
+                    </td>
                 </tr>
+                
                 <?php endforeach; ?>
             </tbody>
         </table>
