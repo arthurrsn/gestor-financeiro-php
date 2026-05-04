@@ -278,6 +278,44 @@ input:focus, select:focus {
 .tabela tr:hover td { background: #f8fafc; }
 
 /* ============================================
+   AJUSTE PARA BOTÃO DE EXCLUIR NA TABELA
+   ============================================ */
+
+   .col-acoes {
+    width: 50px;
+    text-align: center !important;
+}
+
+.form-excluir {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-deletar {
+    background-color: transparent; 
+    color: #cbd5e1; 
+    border: 1px solid #e2e8f0;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.btn-deletar:hover {
+    background-color: var(--vermelho-bg);
+    color: var(--vermelho);
+    border-color: #ffb3c1;
+    transform: scale(1.05);
+}
+
+/* ============================================
    BADGES / TIPO
    ============================================ */
 .badge {
@@ -426,10 +464,5 @@ input:focus, select:focus {
 
     .menu {
         padding: 0 16px;
-    }
-
-    .tabela th:nth-child(6),
-    .tabela td:nth-child(6) {
-        display: none;
     }
 }
