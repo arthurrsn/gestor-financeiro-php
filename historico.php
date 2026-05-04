@@ -56,26 +56,11 @@ $saldo         = calcularSaldo($transacoes);
                     <th>Descrição</th>
                     <th>Tipo</th>
                     <th>Valor</th>
-                    <th>Impacto no Saldo</th>
-                    <th>% do Total</th>
                     <th>Data</th>
                 </tr>
             </thead>
             <tbody>
-                <?php
-                $saldoAcumulado = 0;
-                foreach ($transacoes as $i => $t):
-                    if ($t["tipo"] === "receita") {
-                        $saldoAcumulado += $t["valor"];
-                        $impacto = "+" . formatarMoeda($t["valor"]);
-                        $totalRef = $totalReceitas;
-                    } else {
-                        $saldoAcumulado -= $t["valor"];
-                        $impacto = "-" . formatarMoeda($t["valor"]);
-                        $totalRef = $totalDespesas;
-                    }
-                    $perc = percentual($t["valor"], $totalRef);
-                ?>
+                <?php foreach ($transacoes as $i => $t):?>
                 <tr>
                     <td><?= $i + 1 ?></td>
                     <td><?= htmlspecialchars($t["nome"]) ?></td>
@@ -85,13 +70,6 @@ $saldo         = calcularSaldo($transacoes);
                         </span>
                     </td>
                     <td><?= formatarMoeda($t["valor"]) ?></td>
-                    <td class="<?= $t["tipo"] ?>"><?= $impacto ?></td>
-                    <td>
-                        <div class="barra-container">
-                            <div class="barra <?= $t["tipo"] ?>" style="width: <?= number_format($perc, 1) ?>%"></div>
-                            <span><?= number_format($perc, 1) ?>%</span>
-                        </div>
-                    </td>
                     <td><?= $t["data"] ?? "-" ?></td>
                 </tr>
                 <?php endforeach; ?>
@@ -99,7 +77,7 @@ $saldo         = calcularSaldo($transacoes);
             <tfoot>
                 <tr>
                     <td colspan="3"><strong>Saldo Final</strong></td>
-                    <td colspan="4" class="<?= $saldo >= 0 ? 'receita' : 'despesa' ?>">
+                    <td colspan="2" class="<?= $saldo >= 0 ? 'receita' : 'despesa' ?>">
                         <strong><?= formatarMoeda($saldo) ?></strong>
                     </td>
                 </tr>
